@@ -11,6 +11,7 @@ export class GuestLayoutComponent {
     private router: Router,
     private authService: AuthService,
   ) {
+    // TODO: Move logic to guard
     if (authService.isAuthenticated()) {
       this.router.navigate(['/app/dashboard']);
     }
