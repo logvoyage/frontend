@@ -6,20 +6,49 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
+// Services
 import { HttpClient } from './services/http.client';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard.service';
 
+// Components
 import { AppComponent } from './app.component';
+import { GuestLayoutComponent } from './guest.layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
+  // Guest routes
+  {path: 'guest', redirectTo: 'guest/login', pathMatch: 'full'},
+  {
+    path: 'guest',
+    component: GuestLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ]
+  },
+  // App routes
+  {path: '', redirectTo: 'app/dashboard', pathMatch: 'full'},
+  {path: 'app', redirectTo: 'app/dashboard', pathMatch: 'full'},
+  {
+    path: 'app',
+    component: AppComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+    ]
+  },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
+    GuestLayoutComponent,
+    DashboardComponent
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -33,6 +62,7 @@ const appRoutes: Routes = [
   providers: [
     HttpClient,
     AuthService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

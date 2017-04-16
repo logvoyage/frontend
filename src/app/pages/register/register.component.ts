@@ -4,11 +4,11 @@ import { HttpClient } from '../../services/http.client';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login.html',
+  selector: 'app-register-form',
+  templateUrl: './register.html',
 })
-export class LoginComponent {
-  authForm: FormGroup;
+export class RegisterComponent {
+  form: FormGroup;
   responseError: string;
 
   constructor(
@@ -16,7 +16,8 @@ export class LoginComponent {
     private authService: AuthService,
     fb: FormBuilder
   ) {
-    this.authForm = fb.group({
+    this.form = fb.group({
+      'name' :  [null, [Validators.required]],
       'email' :  [null, [Validators.required, Validators.email]],
       'password':  [null, Validators.required],
     });
@@ -24,8 +25,8 @@ export class LoginComponent {
 
   submitForm(form) {
     this.responseError = null;
-    if (this.authForm.valid) {
-      this.http.post('/users/login', JSON.stringify(form)).subscribe(
+    if (this.form.valid) {
+      this.http.post('/users', JSON.stringify(form)).subscribe(
         (response) => this.processResponse(response.json())
       );
     }
@@ -36,7 +37,6 @@ export class LoginComponent {
       this.responseError = response.errors;
       return;
     }
-    this.authService.authenticate(response.data.token);
-    console.log(response.data.token);
+    console.log(response)
   }
 }

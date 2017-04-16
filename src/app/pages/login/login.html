@@ -1,27 +1,21 @@
-<div class="row center-xs">
-    <div class="col-xs-4">
-        <div class="box">
-          <md-card>
-            <h3>Login</h3>
-            <form [formGroup]="authForm" (ngSubmit)="submitForm(authForm.value)">
-              <div class="row">
-                <md-input-container>
-                  <input mdInput type="email" placeholder="Email" formControlName="email" required>
-                </md-input-container>
-              </div>
-              <div class="row">
-                <md-input-container>
-                  <input mdInput type="password" placeholder="Password" formControlName="password" required>
-                </md-input-container>
-              </div>
-
-              <div *ngIf="responseError" style="color:red">
-                {{responseError}}
-              </div>
-
-              <button md-raised-button type="submit">Login</button>
-            </form>
-          </md-card>
-        </div>
-    </div>
+<div class="grid__col grid__col--3-of-8 grid__col--centered">
+  <md-card>
+    <h3>Authentication</h3>
+    <form [formGroup]="authForm" (ngSubmit)="submitForm(authForm.value)" class="wide-form">
+      <div *ngIf="responseError" style="color:red; margin-bottom: 8px;">
+        <small>{{responseError}}</small>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="email" placeholder="Email" formControlName="email" required>
+        </md-input-container>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="password" placeholder="Password" formControlName="password" required>
+        </md-input-container>
+      </div>
+      <button md-raised-button type="submit" color="primary">Login</button>
+    </form>
+  </md-card>
 </div>

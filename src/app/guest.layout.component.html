@@ -1,0 +1,19 @@
+<style>
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+</style>
+<md-toolbar color="primary">
+  <span>LogVoyage</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <a routerLink="/guest/login" md-raised-button color="accent">Login</a>
+  &nbsp;
+  <a routerLink="/guest/register" md-raised-button color="accent">Register</a>
+</md-toolbar>
+
+<br/>
+
+<router-outlet></router-outlet>
