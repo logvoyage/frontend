@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard.service';
 // Components
 import { AppComponent } from './app.component';
 import { GuestLayoutComponent } from './guest.layout.component';
+import { DashboardLayoutComponent } from './dashboard.layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
   {path: 'app', redirectTo: 'app/dashboard', pathMatch: 'full'},
   {
     path: 'app',
-    component: AppComponent,
+    component: DashboardLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     GuestLayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardLayoutComponent
   ],
   imports: [
     MaterialModule.forRoot(),
