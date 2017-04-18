@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     GuestLayoutComponent,
     DashboardComponent,
-    DashboardLayoutComponent
+    DashboardLayoutComponent,
   ],
   imports: [
     MaterialModule.forRoot(),
