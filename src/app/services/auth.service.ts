@@ -37,6 +37,6 @@ export class AuthService {
   }
 
   private _getRedirectUrl(): string {
-    return this.redirectUrl || '/app/dashboard';
+    return this.redirectUrl || 'dashboard';
   }
 }

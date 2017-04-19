@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { MdSnackBar } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth.service';
 
@@ -17,16 +18,20 @@ export class HttpClient {
     this.urlPrefix = 'http://localhost:3000/api';
   }
 
-  get(url) {
-    const result = this._http.get(this._fullUrl(url), this._getOptions());
-    this._subscribe(result)
-    return result;
+  get(url): Observable<Response> {
+    return this._http.get(this._fullUrl(url), this._getOptions());
   }
 
-  post(url, data) {
-    const result = this._http.post(this._fullUrl(url), data, this._getOptions());
-    this._subscribe(result)
-    return result;
+  post(url, data): Observable<Response>  {
+    return this._http.post(this._fullUrl(url), data, this._getOptions());
+  }
+
+  delete(url): Observable<Response> {
+    return this._http.delete(this._fullUrl(url), this._getOptions());
+  }
+
+  error(error: any) {
+    this._processError(error);
   }
 
   private _fullUrl(url): string {

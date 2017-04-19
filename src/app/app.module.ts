@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClient } from './services/http.client';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard.service';
+import { ProjectsService } from './projects.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { DashboardLayoutComponent } from './dashboard.layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
 
 const appRoutes: Routes = [
   // Guest routes
@@ -31,14 +33,14 @@ const appRoutes: Routes = [
     ]
   },
   // App routes
-  {path: '', redirectTo: 'app/dashboard', pathMatch: 'full'},
-  {path: 'app', redirectTo: 'app/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {
-    path: 'app',
+    path: '',
     component: DashboardLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
+      // { path: 'projects/new', component: ProjectsComponent },
     ]
   },
 ];
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     GuestLayoutComponent,
     DashboardComponent,
     DashboardLayoutComponent,
+    ProjectsListComponent,
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -65,6 +68,7 @@ const appRoutes: Routes = [
     HttpClient,
     AuthService,
     AuthGuard,
+    ProjectsService,
   ],
   bootstrap: [AppComponent]
 })

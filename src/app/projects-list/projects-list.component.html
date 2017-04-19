@@ -1,0 +1,7 @@
+<div *ngIf="projects?.length > 0">
+  !!
+  <li *ngFor="let p of projects">{{p.name}}</li>
+</div>
+<div *ngIf="!projects?.length">
+  To start please <a routerLink="/projects/new">create a new project</a>
+</div>
