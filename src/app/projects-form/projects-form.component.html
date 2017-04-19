@@ -1,0 +1,16 @@
+<div class="grid__col grid__col--3-of-8 grid__col--centered">
+  <md-card>
+    <h3>Create a new project</h3>
+    <form [formGroup]="form" (ngSubmit)="submitForm(form.value)" class="wide-form">
+      <div *ngIf="responseError" style="color:red; margin-bottom: 8px;">
+        <small>{{responseError}}</small>
+      </div>
+      <div class="row">
+        <md-input-container>
+          <input mdInput type="name" placeholder="Name" formControlName="name" required>
+        </md-input-container>
+      </div>
+      <button md-raised-button type="submit" color="primary">Create</button>
+    </form>
+  </md-card>
+</div>

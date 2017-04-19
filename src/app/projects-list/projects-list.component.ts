@@ -8,14 +8,17 @@ import { Project, ProjectsService } from '../projects.service';
 })
 export class ProjectsListComponent {
   projects: Project[];
+  loading: boolean;
 
   constructor(
     private http: HttpClient,
     private projectsService: ProjectsService,
   ) {
+    this.loading = true;
     this.projectsService.all().subscribe(
       (response) => this.projects = response.json().data.projects as Project[],
-      (error) => this.http.error(error)
+      (error) => this.http.error(error),
+      () => this.loading = false
     );
   }
 }

@@ -20,6 +20,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { ProjectsFormComponent } from './projects-form/projects-form.component';
 
 const appRoutes: Routes = [
   // Guest routes
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      // { path: 'projects/new', component: ProjectsComponent },
+      { path: 'projects/new/:id', component: ProjectsFormComponent },
     ]
   },
 ];
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     DashboardLayoutComponent,
     ProjectsListComponent,
+    ProjectsFormComponent,
   ],
   imports: [
     MaterialModule.forRoot(),
