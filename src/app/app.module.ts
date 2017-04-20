@@ -41,7 +41,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'projects/new/:id', component: ProjectsFormComponent },
+      { path: 'projects/new', component: ProjectsFormComponent },
+      { path: 'projects/:id', component: ProjectsFormComponent },
     ]
   },
 ];

@@ -61,7 +61,9 @@ export class HttpClient {
   private _getOptions(): any {
     const headers = new Headers();
     if (this._authService.isAuthenticated()) {
-      headers.append('X-Authentication', this._authService.getToken());
+      headers.append('X-Authentication', this._authService.getToken())
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
     }
     return {headers: headers};
   }

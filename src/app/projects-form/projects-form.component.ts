@@ -23,19 +23,32 @@ export class ProjectsFormComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.route.snapshot.params['id']
+    const id = +this.route.snapshot.params['id'];
+    this.projects.load(id).subscribe(
+      (response) => this.processLoadResponse(response.json())
+    );
   }
 
   submitForm(form) {
     this.responseError = null;
     if (this.form.valid) {
       this.projects.create(form).subscribe(
-        (response) => this.processResponse(response.json())
+        (response) => this.processSaveResponse(response.json())
       );
     }
   }
 
-  processResponse(response: any) {
+  processLoadResponse(response: any) {
+    if (response.errors) {
+      this.responseError = response.errors;
+      return;
+    }
+    this.form = this.fb.group({
+      'name':  [response.data.name, Validators.required],
+    });
+  }
+
+  processSaveResponse(response: any) {
     if (response.errors) {
       this.responseError = response.errors;
       return;

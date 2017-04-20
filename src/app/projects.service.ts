@@ -12,11 +12,19 @@ export class ProjectsService {
   ) {}
 
   all(): Observable<Response> {
-    return this.http.get('/projects/list');
+    return this.http.get('/projects');
   }
 
   create(project: Project): Observable<Response> {
-    return this.http.post('/projects/new', JSON.stringify(project));
+    return this.http.post('/projects', JSON.stringify(project));
+  }
+
+  load(id: number): Observable<Response> {
+    return this.http.get(`/projects/${id}`);
+  }
+
+  update(project: Project): Observable<Response> {
+    return this.http.post(`/projects/${project.id}`, JSON.stringify(project));
   }
 
   delete(project: Project): Observable<Response> {

@@ -16,9 +16,14 @@ export class ProjectsListComponent {
   ) {
     this.loading = true;
     this.projectsService.all().subscribe(
-      (response) => this.projects = response.json().data.projects as Project[],
+      (response) => this.process(response),
       (error) => this.http.error(error),
       () => this.loading = false
     );
+  }
+
+  process(response) {
+    console.log("!!!", response.json());
+    this.projects = response.json().data as Project[];
   }
 }

@@ -1,10 +1,18 @@
-<!-- Header section -->
-<md-toolbar color="primary">
-  <md-icon>menu</md-icon>
-  <span>LogVoyage</span>
-  <a routerLink="/" md-raised-button color="accent">Home</a>
-</md-toolbar>
+<md-sidenav-container class="sidenav-container">
+  <md-sidenav #sidenav class="sidenav-content">
+    Jolly good!
+  </md-sidenav>
 
-<div class="main-content">
-  <router-outlet></router-outlet>
-</div>
+  <div>
+    <md-toolbar color="primary">
+      <md-icon style="margin-right:20px" (click)="sidenav.open()">menu</md-icon>
+      <span routerLink="/" style="cursor:pointer">LogVoyage</span>
+    </md-toolbar>
+
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</md-sidenav-container>
+
