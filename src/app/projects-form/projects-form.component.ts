@@ -1,7 +1,9 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router ,ActivatedRoute } from '@angular/router';
-import { ProjectsService } from '../projects.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
+import { Project, ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-projects-form',
@@ -10,50 +12,64 @@ import { ProjectsService } from '../projects.service';
 export class ProjectsFormComponent implements OnInit {
   form: FormGroup;
   responseError: string;
+  projectId: number;
+  project: Project;
 
   constructor(
-    public fb: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private projects: ProjectsService,
+    private titleService: Title,
   ) {
+    this.project = {} as Project;
     this.form = fb.group({
-      'name':  [null, Validators.required],
+      'name':  [null, [Validators.required, Validators.maxLength(30)]],
     });
    }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.projects.load(id).subscribe(
-      (response) => this.processLoadResponse(response.json())
-    );
+    this.projectId = this.route.snapshot.params['id'];
+    if (this.projectId) {
+      this.projects.load(this.projectId).subscribe(
+        (response) => this._processLoadResponse(response.json())
+      );
+    } else {
+      this.titleService.setTitle(`Projects - new project`);
+    }
   }
 
   submitForm(form) {
     this.responseError = null;
-    if (this.form.valid) {
+    if (!this.form.valid) {
+      return;
+    }
+
+    if (this.projectId) {
+      this.projects.update(this.project).subscribe(
+        (response) => this._processSaveResponse(response.json())
+      );
+    } else {
       this.projects.create(form).subscribe(
-        (response) => this.processSaveResponse(response.json())
+        (response) => this._processSaveResponse(response.json())
       );
     }
   }
 
-  processLoadResponse(response: any) {
+  private _processLoadResponse(response: any) {
     if (response.errors) {
       this.responseError = response.errors;
       return;
     }
-    this.form = this.fb.group({
-      'name':  [response.data.name, Validators.required],
-    });
+    this.project = response.data as Project;
+    this.titleService.setTitle(`Projects - ${this.project.name}`);
   }
 
-  processSaveResponse(response: any) {
+  private _processSaveResponse(response: any) {
     if (response.errors) {
       this.responseError = response.errors;
       return;
     }
-    console.log(response.data);
     this.router.navigate(['dashboard']);
   }
 

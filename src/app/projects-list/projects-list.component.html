@@ -1,7 +1,7 @@
 <div *ngIf="!loading">
   <md-list>
     <md-list-item *ngFor="let p of projects">
-      <a routerLink="/projects/{{p.id}}">{{p.name}}</a>
+      <a routerLink="/projects/{{p.id}}/edit">{{p.name}}</a>
     </md-list-item>
     <md-list-item>
       <a routerLink="/projects/new">Create a new project</a>

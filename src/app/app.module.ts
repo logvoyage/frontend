@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects/new', component: ProjectsFormComponent },
-      { path: 'projects/:id', component: ProjectsFormComponent },
+      { path: 'projects/:id/edit', component: ProjectsFormComponent },
     ]
   },
 ];
@@ -68,6 +68,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
   ],
   providers: [
+    Title,
     HttpClient,
     AuthService,
     AuthGuard,

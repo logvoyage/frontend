@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 import { HttpClient } from '../services/http.client';
 import { Project, ProjectsService } from '../projects.service';
 
@@ -13,7 +15,9 @@ export class ProjectsListComponent {
   constructor(
     private http: HttpClient,
     private projectsService: ProjectsService,
+    private titleService: Title,
   ) {
+    this.titleService.setTitle('Projects - Dashboard');
     this.loading = true;
     this.projectsService.all().subscribe(
       (response) => this.process(response),
@@ -23,7 +27,6 @@ export class ProjectsListComponent {
   }
 
   process(response) {
-    console.log("!!!", response.json());
     this.projects = response.json().data as Project[];
   }
 }
