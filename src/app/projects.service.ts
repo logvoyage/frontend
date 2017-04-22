@@ -31,6 +31,13 @@ export class ProjectsService {
     return this.http.delete(`/projects/${project.id}`);
   }
 
+  logs(project: Project, query: string): Observable<Response> {
+    const data = {
+      query: query
+    }
+    return this.http.post(`/projects/${project.id}/logs`, JSON.stringify(data));
+  }
+
 }
 
 export interface Project {

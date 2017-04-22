@@ -62,6 +62,11 @@ export class ProjectsFormComponent implements OnInit {
       return;
     }
     this.project = response.data as Project;
+
+    this.projects.logs(this.project, 'message').subscribe(
+      (resp) => console.log(resp.json())
+    );
+
     this.titleService.setTitle(`Projects - ${this.project.name}`);
   }
 

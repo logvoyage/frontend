@@ -10,6 +10,9 @@
           <input mdInput type="name" placeholder="Name" formControlName="name"  [(ngModel)]="project.name" required>
         </md-input-container>
       </div>
+      <div class="row">
+        {{project.uuid}}
+      </div>
       <button md-raised-button type="submit" color="primary">{{projectId ? 'Update' : 'Create'}}</button>
     </form>
   </md-card>
