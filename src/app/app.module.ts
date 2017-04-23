@@ -19,8 +19,9 @@ import { DashboardLayoutComponent } from './dashboard.layout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProjectsListComponent } from './projects-list/projects-list.component';
-import { ProjectsFormComponent } from './projects-form/projects-form.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectLogsComponent } from './project-logs/project-logs.component';
 
 const appRoutes: Routes = [
   // Guest routes
@@ -41,8 +42,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'projects/new', component: ProjectsFormComponent },
-      { path: 'projects/:id/edit', component: ProjectsFormComponent },
+      { path: 'projects/new', component: ProjectFormComponent },
+      { path: 'projects/:id/edit', component: ProjectFormComponent },
     ]
   },
 ];
@@ -55,8 +56,9 @@ const appRoutes: Routes = [
     GuestLayoutComponent,
     DashboardComponent,
     DashboardLayoutComponent,
-    ProjectsListComponent,
-    ProjectsFormComponent,
+    ProjectListComponent,
+    ProjectFormComponent,
+    ProjectLogsComponent,
   ],
   imports: [
     MaterialModule.forRoot(),

@@ -5,10 +5,10 @@ import { HttpClient } from '../services/http.client';
 import { Project, ProjectsService } from '../projects.service';
 
 @Component({
-  selector: 'app-projects-list',
-  templateUrl: './projects-list.component.html',
+  selector: 'app-project-list',
+  templateUrl: './project-list.component.html',
 })
-export class ProjectsListComponent {
+export class ProjectListComponent {
   projects: Project[];
   loading: boolean;
 

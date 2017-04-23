@@ -6,10 +6,10 @@ import { Title } from '@angular/platform-browser';
 import { Project, ProjectsService } from '../projects.service';
 
 @Component({
-  selector: 'app-projects-form',
-  templateUrl: './projects-form.component.html'
+  selector: 'app-project-form',
+  templateUrl: './project-form.component.html'
 })
-export class ProjectsFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit {
   form: FormGroup;
   responseError: string;
   projectId: number;
