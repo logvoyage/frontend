@@ -44,6 +44,7 @@ const appRoutes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects/new', component: ProjectFormComponent },
       { path: 'projects/:id/edit', component: ProjectFormComponent },
+      { path: 'projects/:id/logs', component: ProjectLogsComponent },
     ]
   },
 ];

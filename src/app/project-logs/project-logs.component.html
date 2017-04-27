@@ -1,3 +1,19 @@
-<p>
-  project-logs works!
-</p>
+<md-card>
+  <md-input-container style="width:100%">
+    <input #query mdInput placeholder="Search" (keyup.enter)="onQueryEnter(query.value)">
+  </md-input-container>
+</md-card>
+
+<br>
+
+<md-card class="logs-card">
+  <table class="logs-table" border="0px">
+    <tbody>
+      <tr *ngFor="let log of logs">
+        <td>
+          {{log}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</md-card>
