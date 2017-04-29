@@ -5,13 +5,10 @@
       <div *ngIf="responseError" style="color:red; margin-bottom: 8px;">
         <small>{{responseError}}</small>
       </div>
-      <div class="row">
+      <div>
         <md-input-container>
           <input mdInput type="name" placeholder="Name" formControlName="name"  [(ngModel)]="project.name" required>
         </md-input-container>
-      </div>
-      <div class="row">
-        {{project.uuid}}
       </div>
       <button md-raised-button type="submit" color="primary">{{projectId ? 'Update' : 'Create'}}</button>
     </form>

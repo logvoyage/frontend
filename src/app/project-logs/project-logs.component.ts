@@ -14,6 +14,7 @@ export class ProjectLogsComponent implements OnInit {
   project: Project;
   responseError: string;
   logs: string[];
+  private loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,8 @@ export class ProjectLogsComponent implements OnInit {
   }
 
   loadLogs(query: string = '') {
+    this.loading = true;
+    this.logs = [];
     this.projects.logs(this.project, query).subscribe(
       (response) => this._processLoadLogs(response.json())
     );
@@ -50,6 +53,7 @@ export class ProjectLogsComponent implements OnInit {
 
   private _processLoadLogs(response: any) {
     this.logs = response.data;
+    this.loading = false;
   }
 
 }

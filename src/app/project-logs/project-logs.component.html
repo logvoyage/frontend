@@ -6,8 +6,10 @@
 
 <br>
 
-<md-card class="logs-card">
-  <table class="logs-table" border="0px">
+<md-card class="no-padding">
+  <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
+
+  <table class="table" border="0px">
     <tbody>
       <tr *ngFor="let log of logs">
         <td>
@@ -16,4 +18,8 @@
       </tr>
     </tbody>
   </table>
+</md-card>
+
+<md-card *ngIf="!loading && logs?.length == 0">
+  No records found.
 </md-card>

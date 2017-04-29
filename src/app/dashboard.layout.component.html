@@ -1,19 +1,31 @@
   <div>
     <div class="mini-sidebar">
-      <md-icon>home</md-icon>
+      <md-icon routerLink="/">home</md-icon>
       <md-list>
-        <md-list-item mdTooltip="Errors" mdTooltipPosition="right">
-          <md-icon>error outline</md-icon>
+        <md-list-item mdTooltip="Logs" mdTooltipPosition="right">
+          <md-icon>apps</md-icon>
         </md-list-item>
-        <md-list-item mdTooltip="Search" mdTooltipPosition="right">
-          <md-icon>search</md-icon>
+        <md-list-item mdTooltip="Errors" mdTooltipPosition="right">
+          <md-icon>error</md-icon>
+        </md-list-item>
+        <md-list-item mdTooltip="Metrics" mdTooltipPosition="right">
+          <md-icon>timeline</md-icon>
+        </md-list-item>
+        <md-list-item mdTooltip="Settings" mdTooltipPosition="right">
+          <md-icon>settings</md-icon>
         </md-list-item>
       </md-list>
     </div>
 
     <div class="main-content">
+
+      <md-toolbar>
+        <span>Dashboard</span>
+      </md-toolbar>
+
+      <br/>
+
       <div class="inner">
-        <h3>RoomGizmo</h3>
         <router-outlet></router-outlet>
       </div>
     </div>
