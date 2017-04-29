@@ -1,25 +1,24 @@
-  <div>
-    <div class="mini-sidebar">
+<div class="mini-sidebar">
+  <md-list style="margin-top:-22px;">
+    <md-list-item mdTooltip="Home" mdTooltipPosition="right">
       <md-icon routerLink="/">home</md-icon>
-      <md-list>
-        <md-list-item mdTooltip="Create project" mdTooltipPosition="right">
-          <a routerLink="/projects/new">
-            <md-icon>add</md-icon>
-          </a>
-        </md-list-item>
-      </md-list>
-    </div>
+    </md-list-item>
+    <md-list-item mdTooltip="Create project" mdTooltipPosition="right">
+      <a routerLink="/projects/new">
+        <md-icon>add</md-icon>
+      </a>
+    </md-list-item>
+  </md-list>
+</div>
 
-    <div class="main-content">
+<div class="main-content">
 
-      <md-toolbar class="top-toolbar">
-        <span>Dashboard</span>
-        <span class="toolbar-spacer"></span>
-      </md-toolbar>
+  <md-toolbar class="top-toolbar">
+    <span>Dashboard</span>
+    <span class="toolbar-spacer"></span>
+  </md-toolbar>
 
-      <div class="inner">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-
+  <div class="inner">
+    <router-outlet></router-outlet>
   </div>
+</div>
