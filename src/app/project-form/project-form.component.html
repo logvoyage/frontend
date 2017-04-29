@@ -1,6 +1,7 @@
 <div class="grid__col grid__col--3-of-8 grid__col--centered">
   <md-card>
-    <h3>{{projectId ? 'Update project' : 'Create a new project'}}</h3>
+    <h2>{{projectId ? 'Update project' : 'Create a new project'}}</h2>
+
     <form [formGroup]="form" (ngSubmit)="submitForm(form.value)" class="wide-form">
       <div *ngIf="responseError" style="color:red; margin-bottom: 8px;">
         <small>{{responseError}}</small>
@@ -12,5 +13,11 @@
       </div>
       <button md-raised-button type="submit" color="primary">{{projectId ? 'Update' : 'Create'}}</button>
     </form>
+
+    <div *ngIf="projectId">
+      <md-list>
+        <a href="#">Delete project</a>
+      </md-list>
+    </div>
   </md-card>
 </div>

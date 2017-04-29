@@ -2,28 +2,20 @@
     <div class="mini-sidebar">
       <md-icon routerLink="/">home</md-icon>
       <md-list>
-        <md-list-item mdTooltip="Logs" mdTooltipPosition="right">
-          <md-icon>apps</md-icon>
-        </md-list-item>
-        <md-list-item mdTooltip="Errors" mdTooltipPosition="right">
-          <md-icon>error</md-icon>
-        </md-list-item>
-        <md-list-item mdTooltip="Metrics" mdTooltipPosition="right">
-          <md-icon>timeline</md-icon>
-        </md-list-item>
-        <md-list-item mdTooltip="Settings" mdTooltipPosition="right">
-          <md-icon>settings</md-icon>
+        <md-list-item mdTooltip="Create project" mdTooltipPosition="right">
+          <a routerLink="/projects/new">
+            <md-icon>add</md-icon>
+          </a>
         </md-list-item>
       </md-list>
     </div>
 
     <div class="main-content">
 
-      <md-toolbar>
+      <md-toolbar class="top-toolbar">
         <span>Dashboard</span>
+        <span class="toolbar-spacer"></span>
       </md-toolbar>
-
-      <br/>
 
       <div class="inner">
         <router-outlet></router-outlet>

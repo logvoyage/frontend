@@ -11,11 +11,14 @@ import { HttpClient } from './services/http.client';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard.service';
 import { ProjectsService } from './projects.service';
+import { SessionService } from './session.service';
 
 // Components
 import { AppComponent } from './app.component';
 import { GuestLayoutComponent } from './guest.layout.component';
 import { DashboardLayoutComponent } from './dashboard.layout.component';
+import { ProjectLayoutComponent } from './project.layout.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -43,8 +46,16 @@ const appRoutes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects/new', component: ProjectFormComponent },
-      { path: 'projects/:id/edit', component: ProjectFormComponent },
-      { path: 'projects/:id/logs', component: ProjectLogsComponent },
+    ]
+  },
+  // Project related routes
+  {
+    path: 'projects',
+    component: ProjectLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: ':id/edit', component: ProjectFormComponent },
+      { path: ':id/logs', component: ProjectLogsComponent },
     ]
   },
 ];
@@ -52,11 +63,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    GuestLayoutComponent,
+    DashboardLayoutComponent,
+    ProjectLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    GuestLayoutComponent,
     DashboardComponent,
-    DashboardLayoutComponent,
     ProjectListComponent,
     ProjectFormComponent,
     ProjectLogsComponent,
@@ -76,6 +88,7 @@ const appRoutes: Routes = [
     AuthService,
     AuthGuard,
     ProjectsService,
+    SessionService,
   ],
   bootstrap: [AppComponent]
 })

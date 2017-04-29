@@ -1,22 +1,18 @@
 <md-card class="no-padding">
   <div *ngIf="!loading">
-      <table class="table" border="0px">
-        <tbody>
-          <tr *ngFor="let p of projects">
-            <td style="width:90%">
-              <a routerLink="/projects/{{p.id}}/logs">{{p.name}}</a>
-            </td>
-            <td>
-              <a routerLink="/projects/{{p.id}}/edit">
-                <md-icon>settings</md-icon>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!--<md-list-item>
-        <a routerLink="/projects/new">Create a new project</a>
-      </md-list-item>-->
+    <table class="table" border="0px">
+      <tbody>
+        <tr *ngFor="let p of projects">
+          <td style="width:100%">
+            <a routerLink="/projects/{{p.id}}/logs">{{p.name}}</a>
+          </td>
+          <td>
+            <a routerLink="/projects/{{p.id}}/edit">
+              <md-icon>settings</md-icon>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </md-card>
