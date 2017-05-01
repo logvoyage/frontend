@@ -1,3 +1,4 @@
+@import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 $link-color: #0961c4;
@@ -31,28 +32,32 @@ md-card.no-padding {
 }
 
 .mini-sidebar {
-    -webkit-box-align: center;
-    align-items: center;
-    background: #0049b0;
-    background: #3F51B5;
-    box-sizing: border-box;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    height: 100%;
-    padding-bottom: 0;
-    padding: 24px 0 16px;
-    position: fixed;
-    width: 64px;
-    top:0;
-    color: #fff;
+  -webkit-box-align: center;
+  align-items: center;
+  background: #0049b0;
+  background: #3F51B5;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 0;
+  padding: 24px 0 16px;
+  position: fixed;
+  width: 64px;
+  top:0;
+  color: #fff;
 
-    md-icon {
-      cursor: pointer;
-      color: #fff;
-    }
+  md-icon {
+    cursor: pointer;
+    color: #fff;
+  }
+
+  &.dashboard {
+    background: #607D8B;
+  }
 }
 
 
