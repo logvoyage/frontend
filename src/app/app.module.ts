@@ -6,6 +6,9 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
+// 3rd party
+import {NgxPaginationModule} from 'ngx-pagination';
+
 // Services
 import { HttpClient } from './services/http.client';
 import { AuthService } from './services/auth.service';
@@ -81,6 +84,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
   ],
   providers: [
     Title,

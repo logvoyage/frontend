@@ -13,4 +13,8 @@ export class ProjectLayoutComponent {
   currentProject() {
     return this.session.getCurrentProject();
   }
+
+  toolbarTitle(): string {
+    return this.session.getToolbarTitle();
+  }
 }

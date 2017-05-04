@@ -1,24 +1,30 @@
-<md-card>
-  <md-input-container style="width:100%">
-    <input #query mdInput placeholder="Search" (keyup.enter)="onQueryEnter(query.value)">
-  </md-input-container>
-</md-card>
+<div>
+  <input type="text" placeholder="Search" #query (keyup.enter)="onQueryEnter(query.value)" class="query" />
+</div>
 
 <br>
 
+<!--Total: {{total}}-->
 <md-card class="no-padding">
   <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
 
   <table class="table" border="0px">
     <tbody>
-      <tr *ngFor="let log of logs">
+      <tr *ngFor="let log of logs | paginate: { itemsPerPage: 5, currentPage: page, totalItems: total }">
         <td>
           {{log}}
+        </td>
+        <td width="200px">
+          2017-06-15 13:45:30 UTC
         </td>
       </tr>
     </tbody>
   </table>
 </md-card>
+
+<div style="text-align:center">
+  <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
+</div>
 
 <md-card *ngIf="!loading && logs?.length == 0">
   No records found.
