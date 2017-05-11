@@ -21,6 +21,7 @@ $link-color: #0961c4;
 a {
   // color: $link-color;
   color: inherit;
+  cursor: pointer;
 }
 a:visited {
   color: inherit;
@@ -98,3 +99,10 @@ md-card.no-padding {
 .ngx-pagination a, .ngx-pagination button {
   cursor: pointer;
 }
+
+// .truncate {
+//   width: 10%;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }

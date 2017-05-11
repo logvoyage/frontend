@@ -1,5 +1,10 @@
-<div>
-  <input type="text" placeholder="Search" #query (keyup.enter)="onQueryEnter(query.value)" class="query" />
+<div class="row middle-xs">
+  <div class="col-xs-11">
+    <input type="text" placeholder="Search" #query (keyup.enter)="onQueryEnter(query.value)" class="query" />
+  </div>
+  <div class="col-xs-1">
+    <a (click)="loadLogs()"><md-icon>refresh</md-icon></a>
+  </div>
 </div>
 
 <br>
@@ -10,19 +15,19 @@
 
   <table class="table" border="0px">
     <tbody>
-      <tr *ngFor="let log of logs | paginate: { itemsPerPage: 5, currentPage: page, totalItems: total }">
+      <tr *ngFor="let log of logs | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
         <td>
-          {{log}}
+          {{log.msg}}
         </td>
         <td width="200px">
-          2017-06-15 13:45:30 UTC
+          {{log.datetime}}
         </td>
       </tr>
     </tbody>
   </table>
 </md-card>
 
-<div style="text-align:center">
+<div style="text-align:center" *ngIf="total > 10">
   <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
 </div>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 import { SessionService } from '../session.service';
 import { Project, ProjectsService } from '../projects.service';
@@ -15,7 +16,7 @@ export class ProjectLogsComponent implements OnInit {
   project: Project;
   query: string;
   page = 1;
-  logs: string[];
+  logs: Object[];
   total: number;
 
   private loading = true;
@@ -45,6 +46,15 @@ export class ProjectLogsComponent implements OnInit {
     );
   }
 
+  parseLog(log: string) {
+    try {
+      log = JSON.parse(log);
+    } catch (error) {
+      return log;
+    }
+    return log;
+  }
+
   paginate(page: number) {
     this.page = page;
     this.loadLogs();
@@ -63,10 +73,36 @@ export class ProjectLogsComponent implements OnInit {
     this.loadLogs();
   }
 
+  // Process loadLogs response.
   private _processLoadLogs(response: any) {
-    this.logs = response.data.logs;
     this.total = response.data.total;
     this.loading = false;
-  }
 
+    if (!response.data.logs) {
+      return;
+    }
+
+    for (const item of response.data.logs) {
+        try {
+          const data = JSON.parse(item);
+          const datetime = moment.unix(data._datetime).utc().format('YYYY-MM-DD HH:mm:ss UTC');
+          delete data['_datetime'];
+
+          // If 'msg' is the only key - display msg only, otherwise log record as json.
+          let msg;
+          if (Object.keys(data).length === 1 && Object.keys(data)[0] === 'msg' ) {
+            msg = data.msg;
+          } else {
+            msg = JSON.stringify(data);
+          }
+
+          this.logs.push({
+            datetime: datetime,
+            msg: msg,
+          });
+        } catch (error) {
+          // TODO: Report error.
+        }
+    }
+  }
 }
