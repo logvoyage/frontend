@@ -31,6 +31,7 @@ export class ProjectLogsComponent implements OnInit {
   ngOnInit() {
     this.session.setTootbarTitle('Logs');
     this.projectId = this.route.snapshot.params['id'];
+
     this.projects.load(this.projectId).subscribe(
       (response) => this._processProjectLoad(response.json())
     );
@@ -83,26 +84,26 @@ export class ProjectLogsComponent implements OnInit {
     }
 
     for (const item of response.data.logs) {
-        try {
-          const data = JSON.parse(item);
-          const datetime = moment.unix(data._datetime).utc().format('YYYY-MM-DD HH:mm:ss UTC');
-          delete data['_datetime'];
+      try {
+        const data = JSON.parse(item);
+        const datetime = moment.unix(data._datetime).utc().format('YYYY-MM-DD HH:mm:ss UTC');
+        delete data['_datetime'];
 
-          // If 'msg' is the only key - display msg only, otherwise log record as json.
-          let msg;
-          if (Object.keys(data).length === 1 && Object.keys(data)[0] === 'msg' ) {
-            msg = data.msg;
-          } else {
-            msg = JSON.stringify(data);
-          }
-
-          this.logs.push({
-            datetime: datetime,
-            msg: msg,
-          });
-        } catch (error) {
-          // TODO: Report error.
+        // If 'msg' is the only key - display msg only, otherwise log record as json.
+        let msg;
+        if (Object.keys(data).length === 1 && Object.keys(data)[0] === 'msg') {
+          msg = data.msg;
+        } else {
+          msg = JSON.stringify(data);
         }
+
+        this.logs.push({
+          datetime: datetime,
+          msg: msg,
+        });
+      } catch (error) {
+        // TODO: Report error.
+      }
     }
   }
 }

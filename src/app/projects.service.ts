@@ -39,6 +39,10 @@ export class ProjectsService {
     return this.http.post(`/projects/${project.id}/logs`, JSON.stringify(data));
   }
 
+  types(id: number): Observable<Response> {
+    return this.http.get(`/projects/${id}/types`);
+  }
+
 }
 
 export interface Project {
