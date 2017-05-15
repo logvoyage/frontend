@@ -19,12 +19,11 @@ $link-color: #0961c4;
 }
 
 a {
-  // color: $link-color;
-  color: inherit;
-  cursor: pointer;
-}
-a:visited {
-  color: inherit;
+  color: $link-color;
+
+  &:visited {
+      color: $link-color;
+  }
 }
 
 md-card.no-padding {

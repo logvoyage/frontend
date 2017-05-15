@@ -1,21 +1,26 @@
-<div class="row middle-xs">
-  <div class="col-xs-11">
+<div class="row">
+  <div class="col-xs-10">
     <input type="text" placeholder="Search" #query (keyup.enter)="onQueryEnter(query.value)" class="query" />
   </div>
-  <div class="col-xs-1">
-    <a (click)="loadLogs()"><md-icon>refresh</md-icon></a>
+  <div class="col-xs-2 center-xs">
+      <button md-raised-button (click)="loadLogs()">
+          <md-icon>refresh</md-icon>
+      </button>
+      <button md-raised-button>
+          <md-icon>date_range</md-icon>
+          24h
+      </button>
   </div>
 </div>
 
 <br>
 
-<!--Total: {{total}}-->
 <md-card class="no-padding">
   <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
 
   <table class="table" border="0px">
     <tbody>
-      <tr *ngFor="let log of logs | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
+      <tr *ngFor="let log of logs | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
         <td>
           {{log.msg}}
         </td>
@@ -27,7 +32,7 @@
   </table>
 </md-card>
 
-<div style="text-align:center" *ngIf="total > 10">
+<div style="text-align:center" *ngIf="total > perPage">
   <pagination-controls (pageChange)="paginate($event)"></pagination-controls>
 </div>
 
