@@ -82,7 +82,7 @@ export class ProjectLogsComponent implements OnInit {
     }
 
     for (const item of response.data.logs) {
-      const data = JSON.parse(item);
+      const data = JSON.parse(item.source);
       const datetime = moment.unix(data._datetime).utc().format('YYYY-MM-DD HH:mm:ss UTC');
       delete data['_datetime'];
 
@@ -97,6 +97,7 @@ export class ProjectLogsComponent implements OnInit {
       this.logs.push({
         datetime: datetime,
         msg: msg,
+        type: item.type,
       });
     }
   }

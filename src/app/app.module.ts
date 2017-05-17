@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // 3rd party
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Md2Module }  from 'md2';
 
 // Services
 import { HttpClient } from './services/http.client';
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
     ProjectLogsComponent,
   ],
   imports: [
+    Md2Module.forRoot(),
     MaterialModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BrowserModule,
