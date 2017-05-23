@@ -20,7 +20,7 @@
 <md-card class="no-padding">
   <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
 
-  <table class="table" border="0px">
+  <table class="table" border="0px" *ngIf="logs?.length > 0">
     <thead>
         <tr>
             <th>Type</th>
