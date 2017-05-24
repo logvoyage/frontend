@@ -2,16 +2,16 @@
   <div class="col-xs-10">
     <input type="text" placeholder="Search" #query (keyup.enter)="onQueryEnter(query.value)" class="query" />
   </div>
-  <div class="col-xs-2 center-xs">
+  <div class="col-xs-2">
       <button md-raised-button (click)="loadLogs()" mdTooltip="Refresh">
           <md-icon>refresh</md-icon>
       </button>
-      <button md-raised-button mdTooltip="Fields explorer">
-          <md-icon>filter_list</md-icon>
-      </button>
-      <button md-raised-button mdTooltip="Date range">
-          <md-icon>date_range</md-icon>
-      </button>
+      <!-- <button md-raised-button mdTooltip="Fields explorer"> -->
+      <!-- <md-icon>filter_list</md-icon> -->
+      <!-- </button> -->
+      <!-- <button md-raised-button mdTooltip="Date range"> -->
+      <!-- <md-icon>date_range</md-icon> -->
+      <!-- </button> -->
   </div>
 </div>
 
